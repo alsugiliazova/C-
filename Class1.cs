@@ -14,7 +14,6 @@ namespace Lab2
         {
             this.ItemList = ItemList;
         }
-
         public DataItem Current
         {
             get
@@ -24,7 +23,6 @@ namespace Lab2
                 return ItemList[position];
             }
         }
-
         object IEnumerator.Current => throw new NotImplementedException();
 
         public bool MoveNext()
@@ -37,13 +35,14 @@ namespace Lab2
             else
                 return false;
         }
-
         public void Reset()
         {
             position = -1;
         }
         public void Dispose() { }
     }
+
+
 
     class ArrayEnumerator : IEnumerator<DataItem>
     {
@@ -60,8 +59,6 @@ namespace Lab2
             this.ny = ny;
             this.nxy = nxy;
             this.ArrItemList = new List<DataItem>();
-
-
             for (int i = 0; i < nx; ++i)
             {
                 for (int j = 0; j < ny; ++j)
@@ -84,9 +81,7 @@ namespace Lab2
                 return ArrItemList[position];
             }
         }
-
         object IEnumerator.Current => throw new NotImplementedException();
-
         public bool MoveNext()
         {
             if (position < ArrItemList.Count - 1)
