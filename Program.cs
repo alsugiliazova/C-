@@ -326,7 +326,16 @@ namespace Lab2
             try
             {
                 StreamWriter sw = new StreamWriter(filename);
+                //sw.WriteLine($"{id}\n{date}\n{nx}\n{ny}\n{nxy.X}\n{nxy.Y}");
                 sw.WriteLine($"{id}\n{date}\n{nx}\n{ny}\n{nxy.X}\n{nxy.Y}");
+                for (int i = 0; i < nx; i++)
+                {
+                    for (int j = 0; j < ny; j++)
+                    {
+                        sw.WriteLine(values[i, j].Real);
+                        sw.WriteLine(values[i, j].Imaginary);
+                    }
+                }
                 sw.Close();
             }
             catch (Exception e)
@@ -352,8 +361,19 @@ namespace Lab2
                 int ny = int.Parse(sr.ReadLine());
                 float x = float.Parse(sr.ReadLine());
                 float y = float.Parse(sr.ReadLine());
-                Vector2 nxy = new Vector2(x, y);
-                v2 = new V2DataArray(str, date, nx, ny, nxy, F1);
+                Vector2 vector = new Vector2(x, y);
+                v2 = new V2DataArray(str, date, nx, ny, vector, F1);
+                for (int i = 0; i < nx; i++)
+                {
+                    for (int j = 0; j < ny; j++)
+                    {
+                        double values_Re = double.Parse(sr.ReadLine());
+                        double values_Im = double.Parse(sr.ReadLine());
+                        v2.values[i, j] = new Complex(values_Re, values_Im);
+                    }
+                }
+                //Vector2 nxy = new Vector2(x, y);
+                //v2 = new V2DataArray(str, date, nx, ny, nxy, F1);
                 sr.Close();
             }
             catch (Exception e)
